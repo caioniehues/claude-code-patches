@@ -22,7 +22,7 @@ Claude Code collapses thinking blocks by default, showing only:
 
 You have to press `ctrl+o` every time to see the actual thinking content. This patch makes thinking blocks visible inline automatically.
 
-**Current Version:** Claude Code 2.0.46 (Updated 2025-11-19)
+**Current Version:** Claude Code 2.0.55 (Updated 2025-11-27)
 
 ## Quick Start
 
@@ -100,6 +100,8 @@ function GkQ({streamMode:A}){return null}
 - v2.0.37: Renamed to `nR2`, uses `CR.createElement`, `AwA.useState`
 - v2.0.42: Renamed to `cR2`, uses `RR.createElement`, `UwA.useState`
 - v2.0.46: Renamed to `Et2`, uses `xP.createElement`, `HTA.useState`
+- v2.0.53: Renamed to `hq2`, uses `QP.createElement`, `dMA.useState`
+- v2.0.55: Renamed to `nM2`, uses `UP.createElement`, `bOA.useState`
 
 ### Patch 2: Force Thinking Visibility (v2.0.46)
 **Before:**
@@ -137,11 +139,13 @@ case"thinking":
 - v2.0.37: Changed to `n$Q` component, `F3`→`K3` variable, checks `V` and `I`
 - v2.0.42: Changed to `xLQ` component, `K3`→`w3` variable, checks `V` and `I`
 - v2.0.46: Changed to `T32` component, `w3`→`H7` variable, checks `K` and `Z`
+- v2.0.53: Changed to `o09` component, `H7`→`L3` variable, checks `K` and `G`
+- v2.0.55: Changed to `J29` component, `L3`→`y3` variable, checks `K` and `G`
 
 ## Installation
 
 ### Prerequisites
-- Claude Code v2.0.46 installed
+- Claude Code v2.0.55 installed
 - Node.js (comes with Claude Code installation)
 
 ### Install Steps
@@ -249,18 +253,18 @@ Then restart Claude Code.
 
 ## Verification
 
-Check if patches are applied (for v2.0.46):
+Check if patches are applied (for v2.0.55):
 
 ```bash
-# Check Et2 patch
-grep -n "function Et2" ~/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js
+# Check nM2 patch
+grep -n "function nM2" ~/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js
 
-# Should show: function Et2({streamMode:A}){return null}
+# Should show: function nM2({streamMode:A}){return null}
 
 # Check thinking visibility patch
-grep -n 'case"thinking":return H7.createElement(T32' ~/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js
+grep -n 'case"thinking":return y3.createElement(J29' ~/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js
 
-# Should show: case"thinking":return H7.createElement(T32,{addMargin:Q,param:A,isTranscriptMode:!0,verbose:Z});
+# Should show: case"thinking":return y3.createElement(J29,{addMargin:Q,param:A,isTranscriptMode:!0,verbose:G});
 ```
 
 ## Troubleshooting
@@ -395,11 +399,11 @@ $(which claude) → resolve symlinks → find cli.js
 
 ### Why Two Patches?
 
-1. **Et2 Function:** Controls the UI banner shown after thinking completes
+1. **nM2 Function:** Controls the UI banner shown after thinking completes
 2. **Thinking Renderer:** Controls whether the actual thinking text is displayed
 
 Both must be patched because they're separate systems:
-- Patching only Et2 → Blank line appears where thinking should be
+- Patching only nM2 → Blank line appears where thinking should be
 - Patching only the renderer → Banner still shows "ctrl+o to show"
 
 ### Pattern Evolution Across Versions
@@ -428,6 +432,8 @@ The minified code patterns change with each Claude Code update:
 | 2.0.37  | `nR2`          | `n$Q`     | `V,I` check |
 | 2.0.42  | `cR2`          | `xLQ`     | `V,I` check |
 | 2.0.46  | `Et2`          | `T32`     | `K,Z` check |
+| 2.0.53  | `hq2`          | `o09`     | `K,G` check |
+| 2.0.55  | `nM2`          | `J29`     | `K,G` check |
 
 When Claude Code updates, function names and component identifiers are regenerated during minification. In some cases (like v2.0.29), the patterns remain unchanged.
 
@@ -436,7 +442,7 @@ When Claude Code updates, function names and component identifiers are regenerat
 1. **Breaks on updates:** Must re-run after `claude update`
 2. **Minified code:** Fragile, patterns may change with version updates
 3. **No official config:** This is a workaround until Anthropic adds a native setting
-4. **Version-specific:** Patterns are specific to v2.0.46
+4. **Version-specific:** Patterns are specific to v2.0.55
 
 ## Feature Request
 
@@ -654,8 +660,8 @@ Developed through analysis of Claude Code's compiled JavaScript. Special thanks 
 
 ---
 
-**Last Updated:** 2025-11-19
-**Claude Code Version:** 2.0.46
+**Last Updated:** 2025-11-27
+**Claude Code Version:** 2.0.55
 **Status:** ✅ Working
 
 ### Quick Reference
